@@ -20,8 +20,14 @@ RV32I-5Stage-Pipeline/
 │   ├── control_unit.v
 │   └── ...               # Các module khác do thành viên bổ sung
 ├── tb/                   # Testbench kiểm thử
-│   ├── tb_pc.v
-│   └── ...
+│   ├── unit/             # Người viết module tự kiểm thử
+│   │   ├── tb_pc.v
+│   │   └── ...
+│   ├── verification/     # Kiểm thử độc lập, chuyên sâu từng module
+│   │   ├── tb_pc_full.v
+│   │   └── ...
+│   ├── integration/      # Kiểm thử kết nối và phối hợp giữa các module
+│   └── system/           # Kiểm thử CPU hoàn chỉnh bằng chương trình RV32I
 ├── docs/                 # Tài liệu thiết kế
 ├── simulation/           # Kết quả mô phỏng và waveform
 └── README.md             # Hướng dẫn chung
@@ -59,14 +65,18 @@ RV32I-5Stage-Pipeline/
 ## 6. Quy định làm việc chung
 
 1. Mỗi thành viên tự phát triển các module theo phân công.
-2. Code Verilog đặt trong `rtl/`, testbench đặt trong `tb/`.
+2. Code Verilog đặt trong `rtl/`, testbench đặt trong `tb/` theo từng loại:
+   - `unit/`: Người viết module tự kiểm thử chức năng cơ bản.
+   - `verification/`: Người phụ trách kiểm thử thực hiện kiểm thử đầy đủ hơn unit test cho từng chúc năng
+   - `integration/`: Người phụ trách kiểm thử kết nối và phối hợp giữa các module.
+   - `system/`: Người phụ trách kiểm thử CPU hoàn chỉnh bằng chương trình RV32I.
 3. Tài liệu kỹ thuật lưu trong `docs/`, kết quả mô phỏng lưu trong `simulation/`.
 4. Thống nhất tên module, các cổng tín hiệu, độ rộng dữ liệu và quy ước reset trước khi tích hợp.
-5. Ưu tiên làm việc trên branch riêng, không chỉnh sửa trực tiếp `main`.
+5. Mỗi thành viên làm việc trên branch riêng, không chỉnh sửa trực tiếp `main`.
 6. Sau khi hoàn thành một phần công việc, Commit với nội dung mô tả rõ thay đổi.
 7. Tạo Pull Request để kiểm tra trước khi merge vào `main`.
-8. Mỗi module cần được kiểm thử trước khi bàn giao để tích hợp.
-9. Nếu phát hiện lỗi, thông báo cho thành viên phụ trách để phối hợp sửa.
+8. Mỗi module phải được người lập trình tự kiểm thử trước khi bàn giao; người phụ trách kiểm thử sẽ kiểm tra độc lập trước khi tích hợp.
+9. Nếu phát hiện lỗi, thông báo cho thành viên phụ trách để phối hợp sửa và kiểm thử lại.
 
 ## 7. Tiến độ
 

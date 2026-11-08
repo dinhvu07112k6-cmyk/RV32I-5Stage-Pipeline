@@ -28,8 +28,30 @@ Các thành viên đề xuất giao diện cho module mình phụ trách, bao g�
 
 ### Vũ
 - PC
+ | Tên tín hiệu | 	Hướng | Độ rộng (bit) | 	Chức năng |
+|---|---|---|---|
+| clk | Input | 1 | Clock |
+| rst | Input | 1 | Reset mức cao |
+| pc_next | Input | 32 | Địa chỉ lệnh tiếp theo |
+| pc_out | Output | 32 | Địa chỉ lệnh hiện tại |
 - Control Unit
+### Control Unit – Bộ điều khiển
 
+| Tên tín hiệu | Hướng | Độ rộng (bit) | Chức năng |
+|---|---|---|---|
+| `opcode` | Đầu vào | 7 | Xác định nhóm lệnh |
+| `funct3` | Đầu vào | 3 | Phân biệt các phép toán |
+| `funct7` | Đầu vào | 7 | Phân biệt bổ sung các phép toán |
+| `reg_write` | Đầu ra | 1 | Cho phép ghi vào thanh ghi |
+| `alu_src` | Đầu ra | 1 | Chọn toán hạng thứ hai của ALU |
+| `alu_ctrl` | Đầu ra | 4 (đề xuất) | Xác định phép toán ALU thực hiện |
+| `mem_read` | Đầu ra | 1 | Cho phép đọc bộ nhớ dữ liệu (nếu sử dụng) |
+| `mem_write` | Đầu ra | 1 | Cho phép ghi bộ nhớ dữ liệu |
+| `result_src` | Đầu ra | 2 (đề xuất) | Chọn dữ liệu ghi về thanh ghi |
+| `branch` | Đầu ra | 1 | Xác định lệnh rẽ nhánh |
+| `jump` | Đầu ra | 1 | Xác định lệnh nhảy |
+
+**Trạng thái:** Đề xuất, chưa thống nhất chính thức.
 ### Hùng
 - ALU
 - Immediate Generator

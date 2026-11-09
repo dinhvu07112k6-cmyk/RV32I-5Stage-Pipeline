@@ -15,22 +15,20 @@ Thiết kế và mô phỏng CPU RISC-V RV32I bằng Verilog, hỗ trợ 16 lệ
 
 ```text
 RV32I-5Stage-Pipeline/
-├── rtl/                  # Source code Verilog
-│   ├── pc.v
-│   ├── control_unit.v
-│   └── ...               # Các module khác do thành viên bổ sung
+│
+├── rtl/                  # Mã nguồn Verilog của các module CPU
+│
 ├── tb/                   # Testbench kiểm thử
 │   ├── unit/             # Người viết module tự kiểm thử
-│   │   ├── tb_pc.v
-│   │   └── ...
 │   ├── verification/     # Kiểm thử độc lập, chuyên sâu từng module
-│   │   ├── tb_pc_full.v
-│   │   └── ...
 │   ├── integration/      # Kiểm thử kết nối và phối hợp giữa các module
 │   └── system/           # Kiểm thử CPU hoàn chỉnh bằng chương trình RV32I
-├── docs/                 # Tài liệu thiết kế
-├── simulation/           # Kết quả mô phỏng và waveform
-└── README.md             # Hướng dẫn chung
+│
+├── programs/             # Chương trình RV32I dạng mã máy (.hex)
+│
+├── docs/                 # Tài liệu thiết kế, sơ đồ và báo cáo
+│
+└── simulation/           # Kết quả mô phỏng, waveform và log
 ```
 
 ## 3. Phân công nhiệm vụ

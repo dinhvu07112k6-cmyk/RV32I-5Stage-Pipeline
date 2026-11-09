@@ -28,13 +28,39 @@ Các thành viên đề xuất giao diện cho module mình phụ trách, bao g�
 
 ### Vũ
 - PC
- | Tên tín hiệu | 	Hướng | Độ rộng (bit) | 	Chức năng |
+  
+### Vũ
+
+#### 1. PC – Bộ đếm chương trình (`pc`)
+
+| Tên tín hiệu | Hướng | Độ rộng (bit) | Chức năng |
 |---|---|---|---|
-| clk | Input | 1 | Clock |
-| rst | Input | 1 | Reset mức cao |
-| pc_next | Input | 32 | Địa chỉ lệnh tiếp theo |
-| pc_out | Output | 32 | Địa chỉ lệnh hiện tại |
-- Control Unit
+| `clk` | Đầu vào | 1 | Tín hiệu clock |
+| `rst` | Đầu vào | 1 | Reset tích cực mức cao |
+| `pc_next` | Đầu vào | 32 | Địa chỉ lệnh tiếp theo |
+| `pc_out` | Đầu ra | 32 | Địa chỉ lệnh hiện tại |
+
+**Chức năng:** Lưu địa chỉ lệnh hiện tại, cập nhật `pc_out` bằng `pc_next` tại cạnh lên của `clk`; reset đồng bộ đưa PC về 0.
+
+#### 2. Control Unit – Bộ điều khiển (`control_unit`)
+
+| Tên tín hiệu | Hướng | Độ rộng (bit) | Chức năng |
+|---|---|---|---|
+| `opcode` | Đầu vào | 7 | Xác định nhóm lệnh |
+| `funct3` | Đầu vào | 3 | Phân biệt phép toán |
+| `funct7` | Đầu vào | 7 | Phân biệt bổ sung phép toán |
+| `reg_write` | Đầu ra | 1 | Cho phép ghi thanh ghi |
+| `alu_src` | Đầu ra | 1 | Chọn toán hạng thứ hai của ALU |
+| `alu_ctrl` | Đầu ra | 4 | Mã điều khiển ALU theo bảng V1 |
+| `mem_read` | Đầu ra | 1 | Cho phép đọc bộ nhớ dữ liệu |
+| `mem_write` | Đầu ra | 1 | Cho phép ghi bộ nhớ dữ liệu |
+| `result_src` | Đầu ra | 2 | Chọn dữ liệu ghi về thanh ghi |
+| `branch` | Đầu ra | 1 | Nhận diện lệnh rẽ nhánh |
+| `jump` | Đầu ra | 1 | Nhận diện lệnh nhảy |
+
+**Chức năng:** Giải mã lệnh RV32I và tạo tín hiệu điều khiển các khối CPU. Sử dụng bảng mã `alu_ctrl` V1 đã thống nhất với ALU.
+
+**Lưu ý:** Cách chọn `pc_next`, xử lý `result_src` và sử dụng `mem_read` cần được kiểm tra khi tích hợp.
 ### Control Unit – Bộ điều khiển
 
 | Tên tín hiệu | Hướng | Độ rộng (bit) | Chức năng |
@@ -164,4 +190,6 @@ Các mã còn lại dành cho mở rộng. Với BEQ, ALU thực hiện phép tr
 
 ## 4. Trạng thái
 
-Chưa chốt chính thức. Chờ các thành viên đề xuất, thảo luận và thống nhất trước khi triển khai code.
+Đã thống nhất giao diện triển khai ban đầu
+
+

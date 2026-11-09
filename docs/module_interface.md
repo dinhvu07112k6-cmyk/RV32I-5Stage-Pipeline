@@ -53,9 +53,54 @@ Các thành viên đề xuất giao diện cho module mình phụ trách, bao g�
 
 **Trạng thái:** Đề xuất, chưa thống nhất chính thức.
 ### Hùng
-- ALU
-- Immediate Generator
-- MUX
+### Hùng – Khối xử lý dữ liệu
+
+#### 1. ALU (`alu`)
+
+| Tên tín hiệu | Hướng | Độ rộng (bit) | Chức năng |
+|---|---|---|---|
+| `alu_ctrl` | Đầu vào | 4 | Mã điều khiển phép toán từ Control Unit |
+| `src_a` | Đầu vào | 32 | Toán hạng thứ nhất |
+| `src_b` | Đầu vào | 32 | Toán hạng thứ hai |
+| `alu_result` | Đầu ra | 32 | Kết quả phép toán |
+| `zero` | Đầu ra | 1 | Bằng 1 khi kết quả ALU bằng 0; dùng cho BEQ |
+
+**Bảng mã điều khiển ALU (V1)**
+
+| `alu_ctrl` | Phép toán | Lệnh sử dụng |
+|---|---|---|
+| `0000` | Cộng (ADD) | ADD, ADDI, LW, SW |
+| `0001` | Trừ (SUB) | SUB, BEQ |
+| `0010` | AND | AND, ANDI |
+| `0011` | OR | OR, ORI |
+| `0100` | XOR | XOR |
+| `0101` | So sánh nhỏ hơn có dấu (SLT) | SLT, SLTI |
+| `0110` | Dịch trái logic (SLL) | SLL |
+| `0111` | Dịch phải logic (SRL) | SRL |
+
+Các mã còn lại dành cho mở rộng. Với BEQ, ALU thực hiện phép trừ và `zero = 1` khi hai toán hạng bằng nhau.
+
+#### 2. Immediate Generator (`imm_generator`)
+
+| Tên tín hiệu | Hướng | Độ rộng (bit) | Chức năng |
+|---|---|---|---|
+| `instr` | Đầu vào | 32 | Mã lệnh từ Instruction Memory |
+| `imm_ext` | Đầu ra | 32 | Giá trị immediate sau khi trích xuất và mở rộng dấu |
+
+**Chức năng:** Giải mã immediate của các dạng I-type, S-type, B-type và J-type phục vụ 16 lệnh đã chọn. U-type có thể hỗ trợ để mở rộng về sau. Cần thống nhất cách chọn dạng immediate theo `opcode`.
+
+#### 3. MUX 2-to-1 (`mux2_1`)
+
+| Tên tín hiệu | Hướng | Độ rộng (bit) | Chức năng |
+|---|---|---|---|
+| `in0` | Đầu vào | 32 | Dữ liệu đầu vào thứ nhất |
+| `in1` | Đầu vào | 32 | Dữ liệu đầu vào thứ hai |
+| `sel` | Đầu vào | 1 | Tín hiệu lựa chọn |
+| `out` | Đầu ra | 32 | Dữ liệu đầu ra được chọn |
+
+**Quy tắc:** `sel = 0` chọn `in0`; `sel = 1` chọn `in1`.
+
+**Trạng thái:** Giao diện đề xuất V1 cho CPU tuần tự. Các thay đổi khi tích hợp cần được thống nhất trong nhóm.
 
 ### Vinh
 

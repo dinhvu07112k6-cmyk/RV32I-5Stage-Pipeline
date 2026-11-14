@@ -1,4 +1,4 @@
-﻿VCD info: dumpfile simulation/tb_instruction_memory_full.vcd opened for output.
+VCD info: dumpfile simulation/tb_instruction_memory_full.vcd opened for output.
 ==================================================
    BẮT ĐẦU KIỂM THỬ CHUYÊN SÂU: INSTRUCTION MEM   
 ==================================================
@@ -32,4 +32,4 @@
    TỔNG KẾT INSTRUCTION_MEMORY_TB: 17 PASSED, 0 FAILED
 ==================================================
 >>> KẾT QUẢ: MODULE INSTRUCTION MEMORY ĐẠT CHUẨN! <<<
-.\tb\verification\tb_instruction_memory_full.v:119: $finish called at 17000 (1ps)
+tb/verification/tb_instruction_memory_full.v:119: $finish called at 17000 (1ps)

@@ -1,4 +1,4 @@
-﻿VCD info: dumpfile simulation/tb_data_memory_full.vcd opened for output.
+VCD info: dumpfile simulation/tb_data_memory_full.vcd opened for output.
 
 --- 1. KIỂM THỬ TRẠNG THÁI BAN ĐẦU ---
 [PASS] Khoi tao addr=0 co gia tri 0 | addr=00000000 -> data=00000000
@@ -40,4 +40,4 @@
    TỔNG KẾT DATA_MEMORY_TB: 22 PASSED, 0 FAILED
 ==================================================
 >>> KẾT QUẢ: MODULE DATA MEMORY ĐẠT CHUẨN HOÀN TOÀN! <<<
-.\tb\verification\tb_data_memory_full.v:197: $finish called at 206000 (1ps)
+tb/verification/tb_data_memory_full.v:197: $finish called at 206000 (1ps)

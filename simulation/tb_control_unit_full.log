@@ -1,4 +1,4 @@
-﻿VCD info: dumpfile simulation/tb_control_unit_full.vcd opened for output.
+VCD info: dumpfile simulation/tb_control_unit_full.vcd opened for output.
 
 --- 1. KIỂM THỬ NHÓM R-TYPE ---
 [PASS] ADD  | Bus=100000000000 (alu_ctrl=0000, result_src=00)
@@ -37,4 +37,4 @@
    TỔNG KẾT CONTROL_UNIT_TB: 23 PASSED, 0 FAILED
 ==================================================
 >>> KẾT QUẢ: TOÀN BỘ 16 LỆNH VÀ CÁC CA NGOẠI LỆ ĐÃ ĐẠT! <<<
-.\tb\verification\tb_control_unit_full.v:154: $finish called at 115000 (1ps)
+tb/verification/tb_control_unit_full.v:154: $finish called at 115000 (1ps)

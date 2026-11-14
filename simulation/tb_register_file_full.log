@@ -1,4 +1,4 @@
-﻿VCD info: dumpfile simulation/tb_register_file_full.vcd opened for output.
+VCD info: dumpfile simulation/tb_register_file_full.vcd opened for output.
 
 --- 1. KIỂM THỬ RESET TOÀN BỘ THANH GHI ---
 [PASS] Toan bo 32 thanh ghi da duoc xoa sach ve 0 sau Reset
@@ -57,4 +57,4 @@
    TỔNG KẾT REGISTER_FILE_TB: 39 PASSED, 0 FAILED
 ==================================================
 >>> KẾT QUẢ: TOÀN BỘ CHỨC NĂNG REGISTER FILE ĐẠT CHUẨN! <<<
-.\tb\verification\tb_register_file_full.v:200: $finish called at 471000 (1ps)
+tb/verification/tb_register_file_full.v:200: $finish called at 471000 (1ps)

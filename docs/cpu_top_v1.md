@@ -40,6 +40,15 @@ powershell -ExecutionPolicy Bypass -File simulation/run_v1.ps1 -IcarusBin "C:/to
 Đường dẫn trên chỉ là ví dụ; không yêu cầu tên tài khoản hay vị trí repo cố định.
 Script dùng UTF-8 để hiển thị tiếng Việt và ghi log trong simulation/.
 
+### Linux / macOS (Bash)
+
+Chạy toàn bộ tám testbench module và testbench tích hợp tự động:
+
+```bash
+chmod +x simulation/run_v1.sh
+./simulation/run_v1.sh
+```
+
 ### Chạy riêng test tích hợp bằng dòng lệnh
 
 Khi iverilog và vvp đã có trong PATH, có thể chạy bằng Bash trên Linux/macOS:

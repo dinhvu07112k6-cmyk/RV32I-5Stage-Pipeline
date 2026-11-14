@@ -1,4 +1,4 @@
-﻿VCD info: dumpfile simulation/tb_alu_full.vcd opened for output.
+VCD info: dumpfile simulation/tb_alu_full.vcd opened for output.
 
 --- 1. KIỂM THỬ PHÉP ADD ---
 [PASS] ADD: 25 + 15 = 40 | Res=00000028 (40), Zero=0
@@ -50,4 +50,4 @@
    TỔNG KẾT ALU_TB: 28 PASSED, 0 FAILED        
 ==================================================
 >>> KẾT QUẢ: TOÀN BỘ 8 PHÉP TOÁN VÀ CỜ ZERO ĐẠT CHUẨN! <<<
-.\tb\verification\tb_alu_full.v:194: $finish called at 56000 (1ps)
+tb/verification/tb_alu_full.v:194: $finish called at 56000 (1ps)

@@ -1,4 +1,4 @@
-﻿VCD info: dumpfile simulation/tb_mux2_1_full.vcd opened for output.
+VCD info: dumpfile simulation/tb_mux2_1_full.vcd opened for output.
 
 --- 1. KIỂM THỬ KÊNH 0 (sel = 0) ---
 [PASS] Chon kenh 0 co ban | sel=0, out=11112222
@@ -30,4 +30,4 @@
    TỔNG KẾT MUX2_1_TB: 18 PASSED, 0 FAILED     
 ==================================================
 >>> KẾT QUẢ: MODULE MUX 2:1 ĐẠT CHUẨN HOÀN TOÀN! <<<
-.\tb\verification\tb_mux2_1_full.v:121: $finish called at 44000 (1ps)
+tb/verification/tb_mux2_1_full.v:121: $finish called at 44000 (1ps)

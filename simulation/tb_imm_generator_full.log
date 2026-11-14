@@ -1,4 +1,4 @@
-﻿VCD info: dumpfile simulation/tb_imm_generator_full.vcd opened for output.
+VCD info: dumpfile simulation/tb_imm_generator_full.vcd opened for output.
 
 --- 1. KIỂM THỬ KHUÔN DẠNG I-TYPE ---
 [PASS] I-type ADDI: Imm duong (+15) | Imm = 0000000f (15)
@@ -32,4 +32,4 @@
    TỔNG KẾT IMM_GENERATOR_TB: 18 PASSED, 0 FAILED
 ==================================================
 >>> KẾT QUẢ: TOÀN BỘ 4 DẠNG IMM VÀ DẤU ĐẠT CHUẨN! <<<
-.\tb\verification\tb_imm_generator_full.v:160: $finish called at 36000 (1ps)
+tb/verification/tb_imm_generator_full.v:160: $finish called at 36000 (1ps)

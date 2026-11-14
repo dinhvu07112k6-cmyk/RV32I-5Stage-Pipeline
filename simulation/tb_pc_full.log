@@ -1,4 +1,4 @@
-﻿VCD info: dumpfile simulation/tb_pc_full.vcd opened for output.
+VCD info: dumpfile simulation/tb_pc_full.vcd opened for output.
 [PASS] TC1: Reset khoi tao | PC = 00000000
 [PASS] TC2: Duy tri Reset | PC = 00000000
 [PASS] TC3.1: Cap nhat PC = 4 | PC = 00000004
@@ -14,4 +14,4 @@
    TỔNG KẾT PC_TB: 11 PASSED, 0 FAILED         
 ==================================================
 >>> KẾT QUẢ: TOÀN BỘ BÀI TEST PC HOÀN THÀNH TỐT! <<<
-.\tb\verification\tb_pc_full.v:124: $finish called at 116000 (1ps)
+tb/verification/tb_pc_full.v:124: $finish called at 116000 (1ps)

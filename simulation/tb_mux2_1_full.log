@@ -1,0 +1,33 @@
+﻿VCD info: dumpfile simulation/tb_mux2_1_full.vcd opened for output.
+
+--- 1. KIỂM THỬ KÊNH 0 (sel = 0) ---
+[PASS] Chon kenh 0 co ban | sel=0, out=11112222
+[PASS] Kenh 0: in0 thay doi -> out bam theo | sel=0, out=33334444
+[PASS] : in1 thay doi -> out khong doi (cach ly tot) | sel=0, out=33334444
+
+--- 2. KIỂM THỬ KÊNH 1 (sel = 1) ---
+[PASS] Chuyen sang kenh 1 | sel=1, out=ffff0000
+[PASS] Kenh 1: in1 thay doi -> out bam theo | sel=1, out=55556666
+[PASS] : in0 thay doi -> out khong doi (cach ly tot) | sel=1, out=55556666
+
+--- 3. KIỂM THỬ CÁC MẪU DỮ LIỆU ĐẶC BIỆT ---
+[PASS] Mau dac biet: sel=0 chon toan 0 | sel=0, out=00000000
+[PASS] Mau dac biet: sel=1 chon toan 1 | sel=1, out=ffffffff
+[PASS] Mau dac biet dao: sel=0 chon toan 1 | sel=0, out=ffffffff
+[PASS] Mau dac biet dao: sel=1 chon toan 0 | sel=1, out=00000000
+
+--- 4. KIỂM THỬ CHUYỂN MẠCH LIÊN TỤC ---
+[PASS] Chuyen nhanh sel=0 | sel=0, out=cafebabe
+[PASS] Chuyen nhanh sel=1 | sel=1, out=deadbeef
+[PASS] Chuyen nhanh sel=0 | sel=0, out=cafebabe
+[PASS] Chuyen nhanh sel=1 | sel=1, out=deadbeef
+[PASS] Chuyen nhanh sel=0 | sel=0, out=cafebabe
+[PASS] Chuyen nhanh sel=1 | sel=1, out=deadbeef
+[PASS] Chuyen nhanh sel=0 | sel=0, out=cafebabe
+[PASS] Chuyen nhanh sel=1 | sel=1, out=deadbeef
+
+==================================================
+   TỔNG KẾT MUX2_1_TB: 18 PASSED, 0 FAILED     
+==================================================
+>>> KẾT QUẢ: MODULE MUX 2:1 ĐẠT CHUẨN HOÀN TOÀN! <<<
+.\tb\verification\tb_mux2_1_full.v:121: $finish called at 44000 (1ps)

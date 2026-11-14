@@ -1,0 +1,35 @@
+﻿VCD info: dumpfile simulation/tb_instruction_memory_full.vcd opened for output.
+==================================================
+   BẮT ĐẦU KIỂM THỬ CHUYÊN SÂU: INSTRUCTION MEM   
+==================================================
+
+--- 1. KIỂM THỬ KHỞI TẠO MẶC ĐỊNH (NOP) ---
+[PASS] Khoi tao tai dia chi 0 la NOP | addr=00000000 -> instr=00000013
+[PASS] Khoi tao tai dia chi 4 la NOP | addr=00000004 -> instr=00000013
+[PASS] Khoi tao tai dia chi 100 la NOP | addr=00000064 -> instr=00000013
+
+--- 2. NẠP MÃ LỆNH VÀ ĐỌC TUẦN TỰ ---
+[PASS] Doc lenh 0 (addr=0) | addr=00000000 -> instr=00500093
+[PASS] Doc lenh 1 (addr=4) | addr=00000004 -> instr=00a00113
+[PASS] Doc lenh 2 (addr=8) | addr=00000008 -> instr=002081b3
+[PASS] Doc lenh 3 (addr=12) | addr=0000000c -> instr=40110233
+
+--- 3. KIỂM THỬ ĐỊA CHỈ BIÊN (BOUNDARY) ---
+[PASS] O nho cuoi cung hop le (addr = 1020) | addr=000003fc -> instr=12345678
+[PASS] Ngoai bien gan (addr = 1024) -> Tra ve NOP | addr=00000400 -> instr=00000013
+[PASS] Ngoai bien xa (addr = 0x00040000) -> Tra ve NOP | addr=00040000 -> instr=00000013
+[PASS] Dia chi cuc lon (addr = 0xFFFFFFF0) -> Tra ve NOP | addr=fffffff0 -> instr=00000013
+
+--- 4. KIỂM THỬ ĐỊA CHỈ LỆCH BIÊN (MISALIGNED) ---
+[PASS] Lech byte 1 (addr = 1) -> Tra ve NOP | addr=00000001 -> instr=00000013
+[PASS] Lech byte 2 (addr = 2) -> Tra ve NOP | addr=00000002 -> instr=00000013
+[PASS] Lech byte 3 (addr = 3) -> Tra ve NOP | addr=00000003 -> instr=00000013
+[PASS] Lech byte addr = 5 -> Tra ve NOP | addr=00000005 -> instr=00000013
+[PASS] Lech byte addr = 6 -> Tra ve NOP | addr=00000006 -> instr=00000013
+[PASS] Lech byte addr = 7 -> Tra ve NOP | addr=00000007 -> instr=00000013
+
+==================================================
+   TỔNG KẾT INSTRUCTION_MEMORY_TB: 17 PASSED, 0 FAILED
+==================================================
+>>> KẾT QUẢ: MODULE INSTRUCTION MEMORY ĐẠT CHUẨN! <<<
+.\tb\verification\tb_instruction_memory_full.v:119: $finish called at 17000 (1ps)

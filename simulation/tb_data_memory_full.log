@@ -1,0 +1,43 @@
+VCD info: dumpfile simulation/tb_data_memory_full.vcd opened for output.
+
+--- 1. KIỂM THỬ TRẠNG THÁI BAN ĐẦU ---
+[PASS] Khoi tao addr=0 co gia tri 0 | addr=00000000 -> data=00000000
+[PASS] Khoi tao addr=4 co gia tri 0 | addr=00000004 -> data=00000000
+[PASS] Khoi tao addr=8 co gia tri 0 | addr=00000008 -> data=00000000
+
+--- 2. GHI ĐỒNG BỘ TẠI CẠNH LÊN VÀ ĐỌC TỔ HỢP ---
+[PASS] Doc lai du lieu vua ghi vao addr=4 | addr=00000004 -> data=a1b2c3d4
+
+--- 3. KIỂM SOÁT TÍN HIỆU mem_read ---
+[PASS] Khi mem_read=0 thi read_data luon = 0 | addr=00000004 -> data=00000000
+[PASS] Bat lai mem_read=1 thi xuat dung du lieu | addr=00000004 -> data=a1b2c3d4
+
+--- 4. KIỂM SOÁT TÍN HIỆU mem_write = 0 ---
+[PASS] Du lieu khong bi ghi de khi mem_write=0 | addr=00000004 -> data=a1b2c3d4
+
+--- 5. KIỂM THỬ TRUY CẬP BIÊN BỘ NHỚ ---
+[PASS] Ghi/Doc tai o nho cuoi cung hop le (addr=1020) | addr=000003fc -> data=cafebabe
+[PASS] Doc ngoai bien (addr=1024) -> Tra ve 0 | addr=00000400 -> data=00000000
+[PASS] Doc dia chi xa (0x00080000) -> Tra ve 0 | addr=00080000 -> data=00000000
+
+--- 6. KIỂM THỬ ĐỊA CHỈ LỆCH BIÊN (MISALIGNED) ---
+[PASS] addr=0 khong bi ghi ban boi truy xuat lech bien | addr=00000000 -> data=00000000
+[PASS] Doc lech bien addr=1 -> Tra ve 0 | addr=00000001 -> data=00000000
+[PASS] Doc lech bien addr=2 -> Tra ve 0 | addr=00000002 -> data=00000000
+[PASS] Doc lech bien addr=3 -> Tra ve 0 | addr=00000003 -> data=00000000
+
+--- 7. GHI VÀ ĐỌC HÀNG LOẠT Ô NHỚ ---
+[PASS] Kiem tra doc lai mang o nho | addr=00000000 -> data=55000000
+[PASS] Kiem tra doc lai mang o nho | addr=00000004 -> data=55000001
+[PASS] Kiem tra doc lai mang o nho | addr=00000008 -> data=55000002
+[PASS] Kiem tra doc lai mang o nho | addr=0000000c -> data=55000003
+[PASS] Kiem tra doc lai mang o nho | addr=00000010 -> data=55000004
+[PASS] Kiem tra doc lai mang o nho | addr=00000014 -> data=55000005
+[PASS] Kiem tra doc lai mang o nho | addr=00000018 -> data=55000006
+[PASS] Kiem tra doc lai mang o nho | addr=0000001c -> data=55000007
+
+==================================================
+   TỔNG KẾT DATA_MEMORY_TB: 22 PASSED, 0 FAILED
+==================================================
+>>> KẾT QUẢ: MODULE DATA MEMORY ĐẠT CHUẨN HOÀN TOÀN! <<<
+tb/verification/tb_data_memory_full.v:197: $finish called at 206000 (1ps)

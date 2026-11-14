@@ -1,0 +1,40 @@
+VCD info: dumpfile simulation/tb_control_unit_full.vcd opened for output.
+
+--- 1. KIỂM THỬ NHÓM R-TYPE ---
+[PASS] ADD  | Bus=100000000000 (alu_ctrl=0000, result_src=00)
+[PASS] SUB  | Bus=100001000000 (alu_ctrl=0001, result_src=00)
+[PASS] AND  | Bus=100010000000 (alu_ctrl=0010, result_src=00)
+[PASS] OR   | Bus=100011000000 (alu_ctrl=0011, result_src=00)
+[PASS] XOR  | Bus=100100000000 (alu_ctrl=0100, result_src=00)
+[PASS] SLT  | Bus=100101000000 (alu_ctrl=0101, result_src=00)
+[PASS] SLL  | Bus=100110000000 (alu_ctrl=0110, result_src=00)
+[PASS] SRL  | Bus=100111000000 (alu_ctrl=0111, result_src=00)
+
+--- 2. KIỂM THỬ NHÓM I-TYPE TOÁN HỌC ---
+[PASS] ADDI | Bus=110000000000 (alu_ctrl=0000, result_src=00)
+[PASS] ANDI | Bus=110010000000 (alu_ctrl=0010, result_src=00)
+[PASS] ORI  | Bus=110011000000 (alu_ctrl=0011, result_src=00)
+[PASS] SLTI | Bus=110101000000 (alu_ctrl=0101, result_src=00)
+
+--- 3. KIỂM THỬ NHÓM LOAD / STORE ---
+[PASS] LW   | Bus=110000100100 (alu_ctrl=0000, result_src=01)
+[PASS] SW   | Bus=010000010000 (alu_ctrl=0000, result_src=00)
+
+--- 4. KIỂM THỬ NHÓM BRANCH / JUMP ---
+[PASS] BEQ  | Bus=000001000010 (alu_ctrl=0001, result_src=00)
+[PASS] JAL  | Bus=100000001001 (alu_ctrl=0000, result_src=10)
+
+--- 5. KIỂM THỬ NGOẠI LỆ & LỆNH KHÔNG HỢP LỆ ---
+[PASS] ILLEGAL OP 0x00 | Bus=000000000000 (alu_ctrl=0000, result_src=00)
+[PASS] ILLEGAL OP 0x7F | Bus=000000000000 (alu_ctrl=0000, result_src=00)
+[PASS] R-TYPE INVALID FUNCT3 | Bus=000000000000 (alu_ctrl=0000, result_src=00)
+[PASS] R-TYPE INVALID FUNCT7 | Bus=000000000000 (alu_ctrl=0000, result_src=00)
+[PASS] I-TYPE INVALID FUNCT3 | Bus=010000000000 (alu_ctrl=0000, result_src=00)
+[PASS] LOAD INVALID FUNCT3 | Bus=000000000000 (alu_ctrl=0000, result_src=00)
+[PASS] BRANCH INVALID FUNCT3 | Bus=000000000000 (alu_ctrl=0000, result_src=00)
+
+==================================================
+   TỔNG KẾT CONTROL_UNIT_TB: 23 PASSED, 0 FAILED
+==================================================
+>>> KẾT QUẢ: TOÀN BỘ 16 LỆNH VÀ CÁC CA NGOẠI LỆ ĐÃ ĐẠT! <<<
+tb/verification/tb_control_unit_full.v:154: $finish called at 115000 (1ps)

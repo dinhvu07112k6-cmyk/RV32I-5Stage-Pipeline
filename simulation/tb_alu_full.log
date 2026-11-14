@@ -1,0 +1,53 @@
+VCD info: dumpfile simulation/tb_alu_full.vcd opened for output.
+
+--- 1. KIỂM THỬ PHÉP ADD ---
+[PASS] ADD: 25 + 15 = 40 | Res=00000028 (40), Zero=0
+[PASS] ADD: 10 + (-10) = 0 (Check Zero) | Res=00000000 (0), Zero=1
+[PASS] ADD: Tran so duong sang am (0x80000000) | Res=80000000 (-2147483648), Zero=0
+[PASS] ADD: Tran 32-bit ve 0 (Check Zero) | Res=00000000 (0), Zero=1
+
+--- 2. KIỂM THỬ PHÉP SUB (VÀ CỜ ZERO CHO BEQ) ---
+[PASS] SUB: 50 - 20 = 30 | Res=0000001e (30), Zero=0
+[PASS] SUB: Hai so bang nhau -> Zero = 1 (BEQ) | Res=00000000 (0), Zero=1
+[PASS] SUB: So nho tru so lon (10 - 25 = -15) | Res=fffffff1 (-15), Zero=0
+
+--- 3. KIỂM THỬ PHÉP AND ---
+[PASS] AND: Bitmask logic | Res=0f000000 (251658240), Zero=0
+[PASS] AND: Tat ca bit triet tieu ve 0 | Res=00000000 (0), Zero=1
+
+--- 4. KIỂM THỬ PHÉP OR ---
+[PASS] OR: Ghep bit AAAA5555 | Res=aaaa5555 (-1431677611), Zero=0
+[PASS] OR: 0 OR 0 = 0 | Res=00000000 (0), Zero=1
+
+--- 5. KIỂM THỬ PHÉP XOR ---
+[PASS] XOR: Hai so giong nhau XOR = 0 | Res=00000000 (0), Zero=1
+[PASS] XOR: Dao 16 bit cao | Res=ffff0000 (-65536), Zero=0
+
+--- 6. KIỂM THỬ PHÉP SLT (SIGNED COMPARISON) ---
+[PASS] SLT: 10 < 20 (Duong < Duong) | Res=00000001 (1), Zero=0
+[PASS] SLT: 20 < 10 (Duong > Duong) | Res=00000000 (0), Zero=1
+[PASS] SLT: -5 < 5 (Am < Duong - Quan trong!) | Res=00000001 (1), Zero=0
+[PASS] SLT: 5 < -5 (Duong > Am) | Res=00000000 (0), Zero=1
+[PASS] SLT: -15 < -3 (Am < Am) | Res=00000001 (1), Zero=0
+[PASS] SLT: -3 < -15 (Am > Am) | Res=00000000 (0), Zero=1
+[PASS] SLT: Hai so bang nhau -> 0 | Res=00000000 (0), Zero=1
+
+--- 7. KIỂM THỬ PHÉP SLL (SHIFT LEFT LOGICAL) ---
+[PASS] SLL: 1 << 4 = 16 | Res=00000010 (16), Zero=0
+[PASS] SLL: 1 << 31 = 0x80000000 | Res=80000000 (-2147483648), Zero=0
+[PASS] SLL: Mask src_b[4:0] (36 -> dich 4 bit) | Res=00000010 (16), Zero=0
+
+--- 8. KIỂM THỬ PHÉP SRL (SHIFT RIGHT LOGICAL) ---
+[PASS] RL: 0x80000000 >> 1 = 0x40000000 (chen bit 0) | Res=40000000 (1073741824), Zero=0
+[PASS] SRL: 0x80000000 >> 31 = 1 | Res=00000001 (1), Zero=0
+[PASS] SRL: 0xFFFFFFFF >> 8 = 0x00FFFFFF | Res=00ffffff (16777215), Zero=0
+[PASS] SRL: Mask src_b[4:0] (33 -> dich 1 bit) | Res=40000000 (1073741824), Zero=0
+
+--- 9. KIỂM THỬ MÃ DEFAULT ---
+[PASS] ALU Default code 4'b1111 -> Tra ve 0 | Res=00000000 (0), Zero=1
+
+==================================================
+   TỔNG KẾT ALU_TB: 28 PASSED, 0 FAILED        
+==================================================
+>>> KẾT QUẢ: TOÀN BỘ 8 PHÉP TOÁN VÀ CỜ ZERO ĐẠT CHUẨN! <<<
+tb/verification/tb_alu_full.v:194: $finish called at 56000 (1ps)

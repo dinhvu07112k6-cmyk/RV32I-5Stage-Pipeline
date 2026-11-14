@@ -1,0 +1,35 @@
+﻿VCD info: dumpfile simulation/tb_imm_generator_full.vcd opened for output.
+
+--- 1. KIỂM THỬ KHUÔN DẠNG I-TYPE ---
+[PASS] I-type ADDI: Imm duong (+15) | Imm = 0000000f (15)
+[PASS] I-type ADDI: Imm duong max (+2047) | Imm = 000007ff (2047)
+[PASS] I-type ADDI: Imm am (-1) | Imm = ffffffff (-1)
+[PASS] I-type ADDI: Imm am min (-2048) | Imm = fffff800 (-2048)
+[PASS] I-type LW: Offset (+64) | Imm = 00000040 (64)
+[PASS] I-type LW: Offset am (-32) | Imm = ffffffe0 (-32)
+
+--- 2. KIỂM THỬ KHUÔN DẠNG S-TYPE ---
+[PASS] S-type SW: Offset duong (+40) | Imm = 00000028 (40)
+[PASS] S-type SW: Offset am (-20) | Imm = ffffffec (-20)
+
+--- 3. KIỂM THỬ KHUÔN DẠNG B-TYPE (BRANCH) ---
+[PASS] B-type BEQ: Nhay tien (+16) | Imm = 00000010 (16)
+[PASS] B-type BEQ: Test bit 11 (+2048) | Imm = 00000800 (2048)
+[PASS] B-type BEQ: Nhay lui (-4) | Imm = fffffffc (-4)
+[PASS] B-type BEQ: Nhay lui (-40) | Imm = ffffffd8 (-40)
+
+--- 4. KIỂM THỬ KHUÔN DẠNG J-TYPE (JUMP) ---
+[PASS] J-type JAL: Nhay tien (+8) | Imm = 00000008 (8)
+[PASS] J-type JAL: Test bit 11 (+2048) | Imm = 00000800 (2048)
+[PASS] J-type JAL: Test bit 12 (+4096) | Imm = 00001000 (4096)
+[PASS] J-type JAL: Nhay lui (-4) | Imm = fffffffc (-4)
+
+--- 5. KIỂM THỬ LỆNH KHÔNG DÙNG IMMEDIATE ---
+[PASS] R-type (ADD): Tra ve 0 | Imm = 00000000 (0)
+[PASS] Unknown Opcode: Tra ve 0 | Imm = 00000000 (0)
+
+==================================================
+   TỔNG KẾT IMM_GENERATOR_TB: 18 PASSED, 0 FAILED
+==================================================
+>>> KẾT QUẢ: TOÀN BỘ 4 DẠNG IMM VÀ DẤU ĐẠT CHUẨN! <<<
+.\tb\verification\tb_imm_generator_full.v:160: $finish called at 36000 (1ps)

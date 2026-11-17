@@ -1,0 +1,25 @@
+// ============================================================================
+// Chương trình: fibonacci.hex (Tính 8 số Fibonacci và lưu mảng vào RAM)
+// Dãy kết quả: 0, 1, 1, 2, 3, 5, 8, 13 lưu tại RAM[0..28]
+// Kiểm thử: Con trỏ mảng RAM, SW, LW, R-type ADD, I-type ADDI, BEQ, JAL
+// ============================================================================
+00000093 // 0x00: addi x1, x0, 0     ; F(0) = 0
+00100113 // 0x04: addi x2, x0, 1     ; F(1) = 1
+00200193 // 0x08: addi x3, x0, 2     ; count = 2
+00800213 // 0x0C: addi x4, x0, 8     ; N = 8
+00000293 // 0x10: addi x5, x0, 0     ; ptr = 0 (RAM byte addr)
+00400313 // 0x14: addi x6, x0, 4     ; step = 4
+0012a023 // 0x18: sw   x1, 0(x5)     ; RAM[0] = F0 = 0
+006282b3 // 0x1C: add  x5, x5, x6    ; ptr = 4
+0022a023 // 0x20: sw   x2, 0(x5)     ; RAM[4] = F1 = 1
+006282b3 // 0x24: add  x5, x5, x6    ; ptr = 8
+002083b3 // 0x28: loop_fib: add  x7, x1, x2    ; F(n) = F(n-2) + F(n-1)
+0072a023 // 0x2C: sw   x7, 0(x5)     ; RAM[ptr] = F(n)
+006282b3 // 0x30: add  x5, x5, x6    ; ptr += 4
+002000b3 // 0x34: add  x1, x0, x2    ; F(n-2) = F(n-1)
+00700133 // 0x38: add  x2, x0, x7    ; F(n-1) = F(n)
+00118193 // 0x3C: addi x3, x3, 1     ; count += 1
+00418463 // 0x40: beq  x3, x4, 8     ; if count == 8 goto done (0x48)
+fe5ff06f // 0x44: jal  x0, -28       ; goto loop_fib (0x28)
+ffc2a403 // 0x48: done_fib: lw x8, -4(x5)      ; Đọc lại F(7) từ RAM[28] vào x8 (x8 = 13)
+00000063 // 0x4C: halt_fib: beq x0, x0, 0      ; halt

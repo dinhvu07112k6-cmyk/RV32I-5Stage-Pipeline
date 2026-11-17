@@ -1,0 +1,15 @@
+// ============================================================================
+// Chương trình: sum_1_to_n.hex (Tính tổng S = 1 + 2 + ... + 10 = 55)
+// Kiểm thử: Vòng lặp, R-type ADD, I-type ADDI, BEQ, JAL, SW
+// ============================================================================
+00100093 // 0x00: addi x1, x0, 1    ; i = 1
+00a00113 // 0x04: addi x2, x0, 10   ; N = 10
+00000193 // 0x08: addi x3, x0, 0    ; sum = 0
+00100213 // 0x0C: addi x4, x0, 1    ; step = 1
+001181b3 // 0x10: add  x3, x3, x1   ; loop: sum += i
+00208663 // 0x14: beq  x1, x2, 12   ; if (i == N) goto done (0x20)
+004080b3 // 0x18: add  x1, x1, x4   ; i += 1
+ff5ff06f // 0x1C: jal  x0, -12      ; goto loop (0x10)
+00302023 // 0x20: sw   x3, 0(x0)    ; done: RAM[0] = sum (55)
+00000063 // 0x24: beq  x0, x0, 0    ; halt: infinite loop
+

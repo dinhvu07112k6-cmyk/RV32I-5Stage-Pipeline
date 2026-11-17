@@ -1,0 +1,60 @@
+VCD info: dumpfile simulation/tb_register_file_full.vcd opened for output.
+
+--- 1. KIỂM THỬ RESET TOÀN BỘ THANH GHI ---
+[PASS] Toan bo 32 thanh ghi da duoc xoa sach ve 0 sau Reset
+
+--- 2. GHI VA DOC LAI 31 THANH GHI (x1 -> x31) ---
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000001
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000002
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000003
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000004
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000005
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000006
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000007
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000008
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000009
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a000000a
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a000000b
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a000000c
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a000000d
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a000000e
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a000000f
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000010
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000011
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000012
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000013
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000014
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000015
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000016
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000017
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000018
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a0000019
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a000001a
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a000001b
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a000001c
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a000001d
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a000001e
+[PASS] Kiem tra doc x[i] tren rs1 | Gia tri: a000001f
+
+--- 3. KIỂM THỬ ĐỌC ĐỒNG THỜI 2 CỔNG ĐỘC LẬP ---
+[PASS] Doc cong rs1 = x7 | Gia tri: a0000007
+[PASS] Doc cong rs2 = x19 | Gia tri: a0000013
+
+--- 4. KIỂM THỬ TÍNH BẤT BIẾN CỦA THANH GHI x0 ---
+[PASS] x0 tren cong rs1 luon bang 0 | Gia tri: 00000000
+[PASS] x0 tren cong rs2 luon bang 0 | Gia tri: 00000000
+
+--- 5. KIỂM THỬ KHI reg_write = 0 (KHÔNG ĐƯỢC PHÉP GHI) ---
+[PASS] x10 khong bi ghi de khi reg_write=0 | Gia tri: a000000a
+
+--- 6. KIỂM THỬ ƯU TIÊN RESET SO VỚI GHI ---
+[PASS] Reset uu tien hon ghi (x15 tro ve 0) | Gia tri: 00000000
+
+--- 7. KIỂM THỬ GHI ĐÈ DỮ LIỆU MỚI ---
+[PASS] x1 duoc cap nhat gia tri moi thanh cong | Gia tri: cafebabe
+
+==================================================
+   TỔNG KẾT REGISTER_FILE_TB: 39 PASSED, 0 FAILED
+==================================================
+>>> KẾT QUẢ: TOÀN BỘ CHỨC NĂNG REGISTER FILE ĐẠT CHUẨN! <<<
+tb/verification/tb_register_file_full.v:200: $finish called at 471000 (1ps)

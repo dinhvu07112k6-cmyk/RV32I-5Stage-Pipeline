@@ -1,0 +1,17 @@
+VCD info: dumpfile simulation/tb_pc_full.vcd opened for output.
+[PASS] TC1: Reset khoi tao | PC = 00000000
+[PASS] TC2: Duy tri Reset | PC = 00000000
+[PASS] TC3.1: Cap nhat PC = 4 | PC = 00000004
+[PASS] TC3.2: Cap nhat PC = 8 | PC = 00000008
+[PASS] TC3.3: Cap nhat PC = 12 | PC = 0000000c
+[PASS] TC4: PC khong bi nhay tai negedge | PC = 12
+[PASS] TC4: Cap nhat tai posedge ke tiep | PC = 00000064
+[PASS] TC5.1: Nhay dia chi lon (0x00040000) | PC = 00040000
+[PASS] TC5.2: Nhay can tren (0x7FFFFFFC) | PC = 7ffffffc
+[PASS] C6: Reset uu tien tro ve 0 giua luc chay | PC = 00000000
+[PASS] TC7: Phuc hoi sau reset ve 0x00000020 | PC = 00000020
+==================================================
+   TỔNG KẾT PC_TB: 11 PASSED, 0 FAILED         
+==================================================
+>>> KẾT QUẢ: TOÀN BỘ BÀI TEST PC HOÀN THÀNH TỐT! <<<
+tb/verification/tb_pc_full.v:124: $finish called at 116000 (1ps)

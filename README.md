@@ -2,7 +2,17 @@
 
 **Bài tập lớn MI4344 – Kiến trúc máy tính – Nhóm 4**
 
-## 1. Giới thiệu dự án
+## 1. Giới thiệu thành viên và phân công
+
+| Thành viên | MSSV | GitHub | Phụ trách |
+|---|---|---|---|
+| Phạm Đình Vũ | 202419021 | [@dinhvu07112k6-cmyk](https://github.com/dinhvu07112k6-cmyk) | PC, Control Unit, bảng giải mã lệnh, tích hợp CPU, Control Hazard; quản lý code |
+| Trần Quốc Hùng | 202418909 | [@HungkookVN](https://github.com/HungkookVN) | ALU, Immediate Generator, MUX; Data Hazard và Forwarding |
+| Đinh Thế Vinh | 202419017 | [@Vithx06](https://github.com/Vithx06) | Instruction Memory, Register File, Data Memory |
+| Nguyễn Khắc An Phú | 202418961 | [@phuan-tech](https://github.com/phuan-tech) | Testbench, kiểm thử chung, waveform, theo dõi lỗi |
+| Lê Xuân Tùng | 202419013 | [@KinoStriker](https://github.com/KinoStriker) | Thiết kế, tài liệu, slide, nghiên cứu chuyển CPU sang Pipeline |
+
+## 2. Giới thiệu dự án
 
 Thiết kế và mô phỏng CPU RISC-V RV32I bằng Verilog, hỗ trợ 16 lệnh cơ bản. Dự án được triển khai theo các giai đoạn:
 
@@ -11,35 +21,41 @@ Thiết kế và mô phỏng CPU RISC-V RV32I bằng Verilog, hỗ trợ 16 lệ
 - Giai đoạn 3: Tìm hiểu và xử lý các vấn đề Hazard.
 - Giai đoạn 4: Mở rộng nếu còn thời gian.
 
-## 2. Cấu trúc Repository
+## 3. Cấu trúc Repository
 
 ```text
 RV32I-5Stage-Pipeline/
-│
-├── rtl/                  # Mã nguồn Verilog của các module CPU
-│
-├── tb/                   # Testbench kiểm thử
-│   ├── unit/             # Người viết module tự kiểm thử
-│   ├── verification/     # Kiểm thử độc lập, chuyên sâu từng module
-│   ├── integration/      # Kiểm thử kết nối và phối hợp giữa các module
-│   └── system/           # Kiểm thử CPU hoàn chỉnh bằng chương trình RV32I
-│
-├── programs/             # Chương trình RV32I dạng mã máy (.hex)
-│
-├── docs/                 # Tài liệu thiết kế, sơ đồ và báo cáo
-│
-└── simulation/           # Kết quả mô phỏng, waveform và log
+├── .gitignore
+├── LICENSE
+├── README.md
+├── rtl/
+│   ├── pc.v
+│   ├── control_unit.v
+│   ├── alu.v
+│   ├── imm_generator.v
+│   ├── mux2_1.v
+│   ├── instruction_memory.v
+│   ├── register_file.v
+│   ├── data_memory.v
+│   └── cpu_top.v                  # CPU tổng
+├── tb/
+│   ├── unit/                      # Kiểm thử module cơ bản
+│   ├── verification/              # Kiểm thử module độc lập
+│   ├── integration/
+│   │   └── tb_cpu_top.v           # Kiểm thử tích hợp CPU
+│   └── system/                    # Thư mục kiểm thử hệ thống
+├── programs/
+│   └── cpu_v1.hex                 # Chương trình mã máy kiểm thử
+├── docs/
+│   ├── README.md
+│   ├── module_interface.md
+│   ├── cpu_top_v1.md              # Thiết kế và kiểm thử CPU V1
+│   └── huong_dan_su_dung.md       # Hướng dẫn chạy
+└── simulation/
+    ├── README.md
+    ├── run_v1.ps1                 # Chạy kiểm thử trên Windows
+    └── run_v1.sh                  # Chạy kiểm thử trên Linux/macOS
 ```
-
-## 3. Phân công nhiệm vụ
-
-| Thành viên | Phụ trách |
-|---|---|
-| Phạm Đình Vũ       | PC, Control Unit, bảng giải mã lệnh, tích hợp CPU, Control Hazard; quản lý code |
-| Trần Quốc Hùng     | ALU, Immediate Generator, MUX; Data Hazard và Forwarding |
-| Đinh Thế Vinh      | Instruction Memory, Register File, Data Memory |
-| Nguyễn Khắc An Phú | Testbench, kiểm thử chung, waveform, theo dõi lỗi |
-| Lê Xuân Tùng       | Thiết kế, tài liệu, slide, nghiên cứu chuyển CPU sang Pipeline |
 
 ## 4. Tập lệnh hỗ trợ
 
@@ -60,12 +76,18 @@ RV32I-5Stage-Pipeline/
 - Waveform Viewer: GTKWave
 - Version Control: Git/GitHub
 
-## 6. Quy định làm việc chung
+## 6. Hướng dẫn sử dụng
+
+- [Hướng dẫn sử dụng và chạy kiểm thử](docs/huong_dan_su_dung.md).
+- [Thiết kế và kiểm thử CPU V1](docs/cpu_top_v1.md).
+- [Giao diện các module](docs/module_interface.md).
+
+## 7. Quy định làm việc chung
 
 1. Mỗi thành viên tự phát triển các module theo phân công.
 2. Code Verilog đặt trong `rtl/`, testbench đặt trong `tb/` theo từng loại:
    - `unit/`: Người viết module tự kiểm thử chức năng cơ bản.
-   - `verification/`: Người phụ trách kiểm thử thực hiện kiểm thử đầy đủ hơn unit test cho từng chúc năng
+   - `verification/`: Người phụ trách kiểm thử thực hiện kiểm thử đầy đủ hơn unit test cho từng chức năng.
    - `integration/`: Người phụ trách kiểm thử kết nối và phối hợp giữa các module.
    - `system/`: Người phụ trách kiểm thử CPU hoàn chỉnh bằng chương trình RV32I.
 3. Tài liệu kỹ thuật lưu trong `docs/`, kết quả mô phỏng lưu trong `simulation/`.
@@ -76,16 +98,18 @@ RV32I-5Stage-Pipeline/
 8. Mỗi module phải được người lập trình tự kiểm thử trước khi bàn giao; người phụ trách kiểm thử sẽ kiểm tra độc lập trước khi tích hợp.
 9. Nếu phát hiện lỗi, thông báo cho thành viên phụ trách để phối hợp sửa và kiểm thử lại.
 
-## 7. Tiến độ
+## 8. Tiến độ phát triển code
 
-| Thời gian | Nội dung |
-|---|---|
-| 10/11/2026 – 22h | Rà soát tiến độ và nộp tài liệu phiên bản 1 |
-| 14/11/2026 – 21h | Hạn cuối tài liệu phiên bản 2 |
-| 14–19/11/2026    | Phát triển CPU Pipeline |
-| 19–24/11/2026    | Xử lý Hazard |
+| Thời gian | Nội dung | Hoàn thành |
+|---|---|:---:|
+| 10/11/2026 | Xây dựng các module CPU V1 và kiểm thử module | ✓ |
+| 14–17/11/2026 | Tích hợp CPU single-cycle V1, chạy kiểm thử và merge PR #11 | ✓ |
+| 14–19/11/2026 | Phát triển CPU Pipeline 5 giai đoạn | ☐ |
+| 19–24/11/2026 | Triển khai và kiểm thử Hazard trên CPU Pipeline | ☐ |
 
-## 8. Lưu ý
+✓: đã hoàn thành; ☐: chưa hoàn thành. Các mốc Pipeline và Hazard theo kế hoạch ban đầu, cập nhật khi nhóm thống nhất điều chỉnh.
+
+## 9. Lưu ý
 
 Repository là nơi lưu trữ mã nguồn chung của nhóm. Các thành viên chủ động cập nhật tiến độ và trao đổi khi gặp khó khăn, đặc biệt là những vấn đề liên quan đến giao diện module và tích hợp CPU.
 

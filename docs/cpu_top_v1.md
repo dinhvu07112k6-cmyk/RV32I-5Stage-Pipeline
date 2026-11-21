@@ -1,5 +1,7 @@
 # CPU top V1 – thiết kế và kiểm thử tích hợp
 
+> Bắt đầu chạy: [Hướng dẫn sử dụng](huong_dan_su_dung.md).
+
 Đây là CPU single-cycle: mỗi cạnh lên hoàn tất một lệnh. Dùng nguyên tám module V1; chưa có pipeline/hazard.
 
 ## Giao diện và đường dữ liệu

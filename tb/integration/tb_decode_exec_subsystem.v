@@ -123,7 +123,7 @@ module tb_decode_exec_subsystem;
         input [31:0] exp_alu;
         input        exp_zero;
         input        exp_br_taken;
-        input [8*50:1] step_name;
+        input [8*60:1] step_name;
         begin
             #2; // allow combinational propagation
             if (alu_result === exp_alu && zero === exp_zero && branch_taken === exp_br_taken) begin
@@ -157,67 +157,77 @@ module tb_decode_exec_subsystem;
         $display("==================================================");
 
         // ---------------------------------------------------------------
-        // TC1 – R‑type ADD (x1 + x2 = 30 + 12 = 42)
+        // TC1 – R-type ADD (x1 + x2 = 30 + 12 = 42)
         // ---------------------------------------------------------------
         @(posedge clk);
         #1; rst = 0;
-        // Load registers with initial values via forced write‑back
+        // Load registers with initial values via forced write-back
+        @(negedge clk);
         wb_en   = 1; wb_rd = 5'd1; wb_data = 32'd30; // x1 = 30
-        @(posedge clk); wb_en = 1; wb_rd = 5'd2; wb_data = 32'd12; // x2 = 12
-        wb_en = 0; // release forced write‑back
+        @(posedge clk);
+        @(negedge clk);
+        wb_rd   = 5'd2; wb_data = 32'd12;            // x2 = 12
+        @(posedge clk);
+        @(negedge clk);
+        wb_en   = 0;                                  // release forced write-back
+
         // ADD instruction: opcode=0110011, funct3=000, funct7=0000000, rd=3, rs1=1, rs2=2
         instr = {7'b0000000, 5'd2, 5'd1, 3'b000, 5'd3, 7'b0110011};
-        check_exec(32'd42, 1'b0, 1'b0, "TC1: R‑type ADD (x1 + x2 = 30 + 12 = 42)");
+        check_exec(32'd42, 1'b0, 1'b0, "TC1: R-type ADD (x1 + x2 = 30 + 12 = 42)");
+
+        // Allow clock edge for write-back of ADD result into x3 (42)
+        @(posedge clk);
+        #1;
 
         // ---------------------------------------------------------------
-        // TC2 – I‑type ADDI (x3 + (-15) = 42 - 15 = 27)
+        // TC2 – I-type ADDI (x3 + (-15) = 42 - 15 = 27)
         // ---------------------------------------------------------------
         // x3 currently holds result of previous ADD (42)
         // imm = -15 -> 12'hFF1
         instr = {12'hFF1, 5'd3, 3'b000, 5'd4, 7'b0010011}; // addi x4, x3, -15
-        check_exec(32'd27, 1'b0, 1'b0, "TC2: I‑type ADDI (x3 + (-15) = 42 - 15 = 27)");
+        check_exec(32'd27, 1'b0, 1'b0, "TC2: I-type ADDI (x3 + (-15) = 42 - 15 = 27)");
 
         // ---------------------------------------------------------------
-        // TC3 – R‑type SUB (30 - 12 = 18)
+        // TC3 – R-type SUB (30 - 12 = 18)
         // ---------------------------------------------------------------
         instr = {7'b0100000, 5'd2, 5'd1, 3'b000, 5'd5, 7'b0110011}; // sub x5, x1, x2
-        check_exec(32'd18, 1'b0, 1'b0, "TC3: R‑type SUB (30 - 12 = 18)");
+        check_exec(32'd18, 1'b0, 1'b0, "TC3: R-type SUB (30 - 12 = 18)");
 
         // ---------------------------------------------------------------
-        // TC4 – R‑type AND (30 & 12 = 12)
+        // TC4 – R-type AND (30 & 12 = 12)
         // ---------------------------------------------------------------
-        instr = {7'b0000000, 5'd2, 5'd1, 3'b111, 5'd6, 7'b0110011}; // and x6, x1, x2 (funct3=111 for ANDI? actually AND uses 111)
-        check_exec(32'd12, 1'b0, 1'b0, "TC4: R‑type AND (30 & 12 = 12)");
+        instr = {7'b0000000, 5'd2, 5'd1, 3'b111, 5'd6, 7'b0110011}; // and x6, x1, x2
+        check_exec(32'd12, 1'b0, 1'b0, "TC4: R-type AND (30 & 12 = 12)");
 
         // ---------------------------------------------------------------
-        // TC5 – I‑type SLTI (30 < -5) → 0, Zero flag set
+        // TC5 – I-type SLTI (30 < -5) -> 0, Zero flag set
         // ---------------------------------------------------------------
         // imm = -5 -> 12'hFFB
         instr = {12'hFFB, 5'd1, 3'b010, 5'd7, 7'b0010011}; // slti x7, x1, -5
-        check_exec(32'd0, 1'b1, 1'b0, "TC5: I‑type SLTI (30 < -5) → 0, Zero=1");
+        check_exec(32'd0, 1'b1, 1'b0, "TC5: I-type SLTI (30 < -5) -> 0, Zero=1");
 
         // ---------------------------------------------------------------
         // TC6 – BEQ not taken (x1 != x2)
         // ---------------------------------------------------------------
         // rs1=x1 (30), rs2=x2 (12), offset=8 (0x8)
         instr = {1'b0, 6'b000000, 5'd2, 5'd1, 3'b000, 4'b0100, 1'b0, 7'b1100011};
-        check_exec(32'd18, 1'b0, 1'b0, "TC6: BEQ not taken – Zero=0, BranchTaken=0");
+        check_exec(32'd18, 1'b0, 1'b0, "TC6: BEQ not taken - Zero=0, BranchTaken=0");
 
         // ---------------------------------------------------------------
         // TC7 – BEQ taken (x1 == x1)
         // ---------------------------------------------------------------
         instr = {1'b0, 6'b000000, 5'd1, 5'd1, 3'b000, 4'b0100, 1'b0, 7'b1100011};
-        check_exec(32'd0, 1'b1, 1'b1, "TC7: BEQ taken – Zero=1, BranchTaken=1");
+        check_exec(32'd0, 1'b1, 1'b1, "TC7: BEQ taken - Zero=1, BranchTaken=1");
 
         // ---------------------------------------------------------------
         // TC8 – Attempt to write to x0 (should remain 0)
         // ---------------------------------------------------------------
         instr = {12'd10, 5'd1, 3'b000, 5'd0, 7'b0010011}; // addi x0, x1, 10
         @(posedge clk);
-        #1; // wait a cycle for write‑back
-        // Read x0 via a dummy ADD instruction (adds x0 + x0 → result 0)
+        #1; // wait a cycle for write-back
+        // Read x0 via a dummy ADD instruction (adds x0 + x0 -> result 0)
         instr = {7'b0000000, 5'd0, 5'd0, 3'b000, 5'd8, 7'b0110011}; // add x8, x0, x0
-        check_exec(32'd0, 1'b1, 1'b0, "TC8: Write to x0 ignored – x0 stays 0");
+        check_exec(32'd0, 1'b1, 1'b0, "TC8: Write to x0 ignored - x0 stays 0");
 
         // ---------------------------------------------------------------
         // Summary

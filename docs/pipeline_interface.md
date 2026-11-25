@@ -7,6 +7,32 @@
 - `valid=1` là lệnh hợp lệ, `valid=0` là ô trống. Top nối `valid_F` mức 1. Giao diện ID6 cơ bản vận hành với chương trình đã sắp lịch và chèn NOP, chưa có cổng stall, flush hoặc forwarding.
 - Các module V1 dùng giao diện trong [module_interface.md](module_interface.md).
 
+### Cây thư mục pipeline dự kiến
+
+```text
+rtl/pipeline/
+├── cpu_pipeline.v          — Vũ (ghép tổng)
+├── pipe_if_id.v            — Tùng
+├── pipe_id_ex.v            — Vũ
+├── pipeline_execute.v      — Hùng
+├── pipe_ex_mem.v           — Hùng
+├── pipe_mem_wb.v           — Vinh
+└── pipeline_writeback.v    — Vinh
+
+tb/
+├── unit/
+│   ├── tb_pipe_if_id.v            — Tùng
+│   ├── tb_pipe_id_ex.v            — Vũ
+│   ├── tb_pipeline_execute.v      — Hùng
+│   ├── tb_pipe_ex_mem.v           — Hùng
+│   ├── tb_pipe_mem_wb.v           — Vinh
+│   └── tb_pipeline_writeback.v    — Vinh
+└── integration/
+    └── tb_cpu_pipeline.v          — Phú (kiểm thử CPU đã ghép)
+```
+
+Mỗi người viết module và kiểm thử đơn vị tương ứng theo bảng cổng bên dưới.
+
 ## 2. Thanh ghi giữa các tầng
 
 ### IF → ID — `pipe_if_id`

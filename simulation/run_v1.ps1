@@ -11,7 +11,8 @@ try {
     $compiler = Join-Path $IcarusBin 'iverilog.exe'
     $runtime = Join-Path $IcarusBin 'vvp.exe'
     if (!(Test-Path $compiler)) { throw "Khong tim thay Icarus: $compiler. Truyen -IcarusBin de chon thu muc bin." }
-    $rtl = @(Get-ChildItem rtl/*.v | ForEach-Object { "rtl/$($_.Name)" })
+    $rtl = @(Get-ChildItem rtl/common/*.v | ForEach-Object { "rtl/common/$($_.Name)" })
+    $rtl += 'rtl/single_cycle/cpu_top.v'
     $tests = @(Get-ChildItem tb/verification/*_full.v)
     $tests += Get-Item tb/integration/tb_cpu_top.v
     foreach ($test in $tests) {

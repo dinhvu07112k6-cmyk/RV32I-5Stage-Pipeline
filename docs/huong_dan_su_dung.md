@@ -72,7 +72,7 @@ bash simulation/run_v1.sh
 Để chỉ chạy test tích hợp:
 
 ```bash
-iverilog -g2012 -s tb_cpu_top -o simulation/tb_cpu_top.out rtl/*.v tb/integration/tb_cpu_top.v
+iverilog -g2012 -s tb_cpu_top -o simulation/tb_cpu_top.out rtl/common/*.v rtl/single_cycle/cpu_top.v tb/integration/tb_cpu_top.v
 vvp simulation/tb_cpu_top.out
 ```
 

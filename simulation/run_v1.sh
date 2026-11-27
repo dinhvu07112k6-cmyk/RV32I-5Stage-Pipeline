@@ -4,7 +4,7 @@ set -e
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_ROOT"
 
-RTL_FILES=(rtl/*.v)
+RTL_FILES=(rtl/common/*.v rtl/single_cycle/cpu_top.v)
 TESTS=(tb/verification/*_full.v tb/integration/tb_cpu_top.v)
 
 echo "=========================================================="

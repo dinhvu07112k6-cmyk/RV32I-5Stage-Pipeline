@@ -5,7 +5,7 @@
 - Hậu tố `_F`, `_D`, `_E`, `_M`, `_W` ứng với IF, ID, EX, MEM, WB.
 - Bốn thanh ghi tầng có hai đầu vào 1 bit `clk` và `rst`. Chốt toàn bộ đầu vào tại cạnh lên. Reset đồng bộ mức 1 đưa tất cả đầu ra về 0.
 - `valid=1` là lệnh hợp lệ, `valid=0` là ô trống. Top nối `valid_F` mức 1. Giao diện ID6 cơ bản vận hành với chương trình đã sắp lịch và chèn NOP, chưa có cổng stall, flush hoặc forwarding.
-- Các module V1 dùng giao diện trong [module_interface.md](module_interface.md).
+- Pipeline sử dụng các module trong `rtl/common/` theo [đặc tả giao diện module](module_interface.md).
 
 ### Cây thư mục pipeline dự kiến
 

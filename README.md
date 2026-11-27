@@ -29,15 +29,18 @@ RV32I-5Stage-Pipeline/
 ├── LICENSE
 ├── README.md
 ├── rtl/
-│   ├── pc.v
-│   ├── control_unit.v
-│   ├── alu.v
-│   ├── imm_generator.v
-│   ├── mux2_1.v
-│   ├── instruction_memory.v
-│   ├── register_file.v
-│   ├── data_memory.v
-│   └── cpu_top.v                  # CPU tổng
+│   ├── common/                    # Các module dùng chung
+│   │   ├── pc.v
+│   │   ├── control_unit.v
+│   │   ├── alu.v
+│   │   ├── imm_generator.v
+│   │   ├── mux2_1.v
+│   │   ├── instruction_memory.v
+│   │   ├── register_file.v
+│   │   └── data_memory.v
+│   ├── single_cycle/
+│   │   └── cpu_top.v              # Top CPU V1
+│   └── pipeline/                  # RTL riêng của CPU ID6
 ├── tb/
 │   ├── unit/                      # Kiểm thử module cơ bản
 │   ├── verification/              # Kiểm thử module độc lập
@@ -50,7 +53,8 @@ RV32I-5Stage-Pipeline/
 │   ├── README.md
 │   ├── module_interface.md
 │   ├── cpu_top_v1.md              # Thiết kế và kiểm thử CPU V1
-│   └── huong_dan_su_dung.md       # Hướng dẫn chạy
+│   ├── huong_dan_su_dung.md       # Hướng dẫn chạy
+│   └── pipeline_interface.md      # Giao diện và cây module pipeline
 └── simulation/
     ├── README.md
     ├── run_v1.ps1                 # Chạy kiểm thử trên Windows
@@ -81,6 +85,7 @@ RV32I-5Stage-Pipeline/
 - [Hướng dẫn sử dụng và chạy kiểm thử](docs/huong_dan_su_dung.md).
 - [Thiết kế và kiểm thử CPU V1](docs/cpu_top_v1.md).
 - [Giao diện các module](docs/module_interface.md).
+- [Giao diện pipeline ID6](docs/pipeline_interface.md).
 
 ## 7. Quy định làm việc chung
 
